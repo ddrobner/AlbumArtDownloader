@@ -6,7 +6,7 @@ class auth():
        self.encoded_secrets = encoded_secrets
 
     def authenticate(self):
-        return requests.post("https://accounts.spotify.com/api/token",
-                             headers={'Authorization:' : f'Basic {encoded_secrets}'},
-                             data={'grant_type': 'client_credentials'})
+        return json.loads(requests.post("https://accounts.spotify.com/api/token",
+                             headers={'Authorization' : f'Basic {self.encoded_secrets}'},
+                             data={'grant_type': 'client_credentials'}).content)['access_token']
 
