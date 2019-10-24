@@ -1,5 +1,6 @@
 import requests
 import json
+import shutil
 
 from auth import auth
 
@@ -16,3 +17,7 @@ class spotify():
     def download_art(self, album_id):
         self.album = json.loads(requests.get(f"https://api.spotify.com/v1/tracks/{album_id}", headers={'Authorization': f"Bearer {self.access_token}"}).content)
         self.image_url =  self.album['album']['images'][0]['url']
+        image = requests.get(self.image_url, stream=True)
+
+        with open('album.jpg', 'wb') as out_file:
+            shutil.copyfileobj(image.raw, out_file)
