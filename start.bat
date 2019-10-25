@@ -1,2 +1,2 @@
-%~dp0\Scripts\activate.bat
-py -3 main.py
+@ECHO OFF
+%~dp0\Scripts\activate.bat & python main.py
