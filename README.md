@@ -10,4 +10,4 @@ placeholder
 
 ## Example
 
-placeholder
+[![](http://img.youtube.com/vi/dY8SbWbLUvc/0.jpg)](http://www.youtube.com/watch?v=dY8SbWbLUvc "Example")
