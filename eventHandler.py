@@ -1,11 +1,13 @@
 from spotify import spotify
 from config import config
+from sanitizeInput import sanitizer
 
 import os
 from watchdog.events import PatternMatchingEventHandler
 
 spotify = spotify()
 config = config()
+sanitizer = sanitizer()
 
 path = config.getDirectory()
 
@@ -16,7 +18,7 @@ class customEventHandler(PatternMatchingEventHandler):
 
     def on_modified(self, event):
         with open(f"{path}\\currentsong.txt", "r") as f:
-            title = f.readline().strip("\n")
+            title = sanitizer.sanitize(f.readline().strip("\n"))
         if title:
             track_id = spotify.search(title)
             spotify.download_art(track_id)
