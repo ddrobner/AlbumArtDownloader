@@ -1,6 +1,7 @@
 import requests
 import json
 import shutil
+import time
 
 from auth import auth
 
@@ -21,3 +22,7 @@ class spotify():
 
         with open('album.jpg', 'wb') as out_file:
             shutil.copyfileobj(image.raw, out_file)
+
+    def routine(self):
+        time.sleep(3600)
+        self.access_token = self.authenticator.authenticate()

@@ -1,6 +1,7 @@
 from config import config
 from eventHandler import customEventHandler
 
+import threading
 import time
 from watchdog.observers import Observer
 
