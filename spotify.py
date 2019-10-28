@@ -3,10 +3,13 @@ import json
 import shutil
 
 from auth import auth
+from config import config
 
 class spotify():
     def __init__(self):
-        self.AUTHENTICATION_STRING = "YzRhNWI4NzhlMmI3NGNmODg1YjI4NDNhMTQyODFkYmM6YjE2YzgwZGM1M2MzNDE5NDg3ZGE3MWUxYmU0ZmEyY2E="
+        self.config = config()
+        
+        self.AUTHENTICATION_STRING = self.config.getToken() 
         self.authenticator = auth(self.AUTHENTICATION_STRING)
         self.access_token = self.authenticator.authenticate()
 
