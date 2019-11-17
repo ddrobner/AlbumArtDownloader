@@ -78,7 +78,7 @@ def getWindowTitle():
     print(pids)
     for pid in pids:
         print(pid)
-        print(enumProcWnds(int(pid)))
+        #print(enumProcWnds(int(pid)))
         return enumProcWnds(int(pid))
 
 while True:
