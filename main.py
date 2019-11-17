@@ -19,6 +19,7 @@ lastWindowTitle = ""
 currentWindowTitle = ""
 
 def enumWindowsProc(hwnd, lParam):
+    global currentWindowTitle
     if (lParam is None) or ((lParam is not None) and (win32process.GetWindowThreadProcessId(hwnd)[1] == lParam)):
         text = win32gui.GetWindowText(hwnd)
         if text:
@@ -84,13 +85,10 @@ def getWindowTitle():
         return enumProcWnds(int(pid))
 
 while True:
-    if lastWindowTitle == currentWindowTitle:
-        continue
-    else:
-        lastWindowTitle = currentWindowTitle
-        getWindowTitle()
-        track_id = spotify.search(sanitizer.sanitize(currentWindowTitle))
-        spotify.download_art(track_id)
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"Current Song: {currentWindowTitle}")
-    time.sleep(1)
+    lastWindowTitle = currentWindowTitle
+    getWindowTitle()
+    track_id = spotify.search(sanitizer.sanitize(currentWindowTitle))
+    spotify.download_art(track_id)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(f"Current Song: {currentWindowTitle}")
+    time.sleep(10)
