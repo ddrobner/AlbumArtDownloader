@@ -74,12 +74,12 @@ def enumProcs(procName=None):
         return pids
 
 def getWindowTitle():
-    pids = int(enumProcs("spotify.exe"))
-    print(pids)#
+    pids = enumProcs("spotify.exe")
+    print(pids)
     for pid in pids:
         print(pid)
-        print(enumProcWnds(pid))
-        return enumProcWnds(pid)
+        print(enumProcWnds(int(pid)))
+        return enumProcWnds(int(pid))
 
 while True:
     if getWindowTitle() == currentWindowTitle:
