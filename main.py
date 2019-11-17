@@ -23,8 +23,9 @@ def enumWindowsProc(hwnd, lParam):
         if text:
             wStyle = win32api.GetWindowLong(hwnd, win32con.GWL_STYLE)
             if wStyle & win32con.WS_VISIBLE:
-                #print("%s" % (text))
-                return text
+                print("%s" % (text))
+                #return text
+                currentWindowTitle = text
 
 def enumProcWnds(pid=None):
     win32gui.EnumWindows(enumWindowsProc, pid)
