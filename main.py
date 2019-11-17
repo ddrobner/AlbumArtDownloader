@@ -15,6 +15,7 @@ from sanitizeInput import sanitizer
 spotify = spotify()
 sanitizer = sanitizer()
 
+lastWindowTitle = ""
 currentWindowTitle = ""
 
 def enumWindowsProc(hwnd, lParam):
@@ -24,8 +25,8 @@ def enumWindowsProc(hwnd, lParam):
             wStyle = win32api.GetWindowLong(hwnd, win32con.GWL_STYLE)
             if wStyle & win32con.WS_VISIBLE:
                 print("%s" % (text))
-                return text
-                #currentWindowTitle = text
+                #return text
+                currentWindowTitle = text
 
 def enumProcWnds(pid=None):
     win32gui.EnumWindows(enumWindowsProc, pid)
@@ -83,10 +84,11 @@ def getWindowTitle():
         return enumProcWnds(int(pid))
 
 while True:
-    if getWindowTitle() == currentWindowTitle:
+    if lastWindowTitle == currentWindowTitle:
         continue
     else:
-        currentWindowTitle = getWindowTitle()
+        lastWindowTitle = currentWindowTitle
+        getWindowTitle()
         track_id = spotify.search(sanitizer.sanitize(currentWindowTitle))
         spotify.download_art(track_id)
         os.system('cls' if os.name == 'nt' else 'clear')
