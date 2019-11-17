@@ -74,7 +74,7 @@ def enumProcs(procName=None):
         return pids
 
 def getWindowTitle():
-    pids = enumProcs("Spotify.exe")
+    pids = enumProcs("spotify.exe")
     for pid in pids:
         return enumProcWnds(pid)
 
