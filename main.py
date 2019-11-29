@@ -91,6 +91,7 @@ while True:
         getWindowTitle()
         time.sleep(1)
     else:
+        lastWindowTitle = currentWindowTitle
         track_id = spotify.search(sanitizer.sanitize(currentWindowTitle))
         spotify.download_art(track_id)
         os.system('cls' if os.name == 'nt' else 'clear')
