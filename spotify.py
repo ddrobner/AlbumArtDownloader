@@ -17,6 +17,7 @@ class spotify():
         try:
             self.result = json.loads(requests.get(f"https://api.spotify.com/v1/search?q={title}&type=track", headers={'Authorization' : f"Bearer {self.access_token}"}).content)
         except:
+            # Tokens expire after an hour so it reauthenticates if the request fails (done to avoid a mess keeping track of tokens)
             print("Invalid token... Attemping authentication again")
             self.access_token = self.authenticator.authenticate()
         return  self.result['tracks']['items'][0]['id']
@@ -27,6 +28,7 @@ class spotify():
             self.image_url =  self.album['album']['images'][0]['url']
             image = requests.get(self.image_url, stream=True)
         except:
+            # Tokens expire after an hour so it reauthenticates if the request fails (done to avoid a mess keeping track of tokens)
             print("Invalid token... Attemping authentication again")
             self.access_token = self.authenticator.authenticate()
 
