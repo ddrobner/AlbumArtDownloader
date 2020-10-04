@@ -25,8 +25,6 @@ def enumWindowsProc(hwnd, lParam):
         if text:
             wStyle = win32api.GetWindowLong(hwnd, win32con.GWL_STYLE)
             if wStyle & win32con.WS_VISIBLE:
-                #print("%s" % (text))
-                # return text
                 currentWindowTitle = text
 
 
@@ -65,7 +63,6 @@ def enumProcs(procName=None):
                 _GetProcessImageFileName(hProc, buf, bufLen)
                 if buf.value:
                     name = buf.value.decode().split(os.path.sep)[-1]
-                    # print name
                 else:
                     _CloseHandle(hProc)
                     continue
@@ -83,10 +80,7 @@ def enumProcs(procName=None):
 
 def getWindowTitle():
     pids = enumProcs("spotify.exe")
-    # print(pids)
     for pid in pids:
-        # print(pid)
-        # print(enumProcWnds(int(pid)))
         return enumProcWnds(int(pid))
 
 
