@@ -11,3 +11,9 @@ class config():
 
     def getToken(self):
         return self.token
+
+    def get_client_id(self):
+        return self.client_id
+
+    def get_client_secret(self):
+        return self.client_secret
